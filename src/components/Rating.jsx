@@ -2,26 +2,32 @@ import { useState } from 'react'
 // useState is a function
 // console.log(useState, typeof useState)
 
-const Rating = () => {
+const Rating = ({
+  heading = 'Rate Your Experience',
+  color = 'gold',
+  feedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent']
+}) => {
+  // console.log(props)
+  // const { heading } = props
+
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
 
   // console.log('Rating value:', rating, 'Type of rating:', typeof rating)
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1)
-  const feedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent']
 
-  console.log(stars, 'Type of stars:', typeof stars)
+  // console.log(stars, 'Type of stars:', typeof stars)
 
   // const clicked = index => console.log('clicked', index)
   // const hovered = (direction, index) => console.log('Hovered!', direction, index)
 
   return (
-    <div className="rating-container">
-      <h2>Rate Your Experience</h2>
+    <div className='rating-container'>
+      <h2>{heading}</h2>
       {/* <p>Hover: {hover}</p>
       <p>Rating: {rating}</p> */}
-      <div className="stars">
+      <div className='stars'>
         {stars.map((star, index) => (
           // this fires off immediately because of the parentheses
           // <span onClick={clicked(index)} key={star} className="star">
@@ -32,14 +38,15 @@ const Rating = () => {
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(0)}
             key={star}
-            className={`star ${star <= (hover || rating) ? 'active' : ''}`}
+            className='star'
+            style={{ color: star <= (hover || rating) ? color : '#ccc' }}
           >
             {'\u2605'}
           </span>
         ))}
       </div>
       {rating > 0 && (
-        <div className="feedback">
+        <div className='feedback'>
           <p>{feedbackMessages[rating - 1]}</p>
         </div>
       )}
