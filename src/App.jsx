@@ -1,5 +1,4 @@
 import Rating from './components/Rating'
-import { useState } from 'react'
 
 const App = () => {
   const name = 'Patrick'

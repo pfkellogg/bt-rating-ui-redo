@@ -1,6 +1,7 @@
 import { useState } from 'react'
 // useState is a function
 // console.log(useState, typeof useState)
+import Star from './Star'
 
 const Rating = ({
   heading = 'Rate Your Experience',
@@ -28,21 +29,17 @@ const Rating = ({
       {/* <p>Hover: {hover}</p>
       <p>Rating: {rating}</p> */}
       <div className='stars'>
-        {stars.map((star, index) => (
-          // this fires off immediately because of the parentheses
-          // <span onClick={clicked(index)} key={star} className="star">
-
-          // this works because of the arrow function
-          <span
-            onClick={() => setRating(star)}
-            onMouseEnter={() => setHover(star)}
-            onMouseLeave={() => setHover(0)}
+        {stars.map((star) => (
+          <Star
             key={star}
-            className='star'
-            style={{ color: star <= (hover || rating) ? color : '#ccc' }}
-          >
-            {'\u2605'}
-          </span>
+            star={star}
+            rating={rating}
+            hover={hover}
+            color={color}
+            ratingClick={setRating}
+            hoverEnter={setHover}
+            hoverLeave={() => setHover(null)}
+          />
         ))}
       </div>
       {rating > 0 && (
