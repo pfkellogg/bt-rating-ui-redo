@@ -6,30 +6,43 @@ const Rating = () => {
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
 
-  console.log('Rating value:', rating, 'Type of rating:', typeof rating)
+  // console.log('Rating value:', rating, 'Type of rating:', typeof rating)
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1)
+  const feedbackMessages = ['Terrible', 'Poor', 'Fair', 'Good', 'Excellent']
+
   console.log(stars, 'Type of stars:', typeof stars)
 
-  const clicked = index => console.log('clicked', index)
-  const hovered = (direction, index) => console.log('Hovered!', direction, index)
+  // const clicked = index => console.log('clicked', index)
+  // const hovered = (direction, index) => console.log('Hovered!', direction, index)
 
   return (
     <div className="rating-container">
       <h2>Rate Your Experience</h2>
-      <p>Hover: {hover}</p>
-      <p>Rating: {rating}</p>
+      {/* <p>Hover: {hover}</p>
+      <p>Rating: {rating}</p> */}
       <div className="stars">
         {stars.map((star, index) => (
           // this fires off immediately because of the parentheses
           // <span onClick={clicked(index)} key={star} className="star">
 
           // this works because of the arrow function
-          <span onClick={() => setRating(star)} onMouseEnter={() => setHover(star)} onMouseLeave={() => setHover(0)} key={star} className="star">
+          <span
+            onClick={() => setRating(star)}
+            onMouseEnter={() => setHover(star)}
+            onMouseLeave={() => setHover(0)}
+            key={star}
+            className={`star ${star <= (hover || rating) ? 'active' : ''}`}
+          >
             {'\u2605'}
           </span>
         ))}
       </div>
+      {rating > 0 && (
+        <div className="feedback">
+          <p>{feedbackMessages[rating - 1]}</p>
+        </div>
+      )}
     </div>
   )
 }

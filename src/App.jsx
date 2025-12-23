@@ -22,9 +22,9 @@ const Counter = () => {
 
   return (
     <>
-      <h2>Count: {count}</h2>
+      {/* <h2>Count: {count}</h2> */}
       {/* <button onClick={increment}>Increment</button> */}
-      <button
+      {/* <button
         onClick={() =>
           setCount(prevCount => {
             console.log('Previous count value:', prevCount)
@@ -33,7 +33,7 @@ const Counter = () => {
         }
       >
         Increment
-      </button>
+      </button> */}
     </>
   )
 }
